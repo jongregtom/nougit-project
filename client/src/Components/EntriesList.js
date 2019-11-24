@@ -2,16 +2,18 @@ import React from 'react';
 import Entry from './Entry';
 
 function EntriesList(props) {
-
-	const entries = props.entries.map((entry) => {
-		console.log(entry)
-		return <Entry entry={entry}/>
-	});
+	console.log('props: ', props.entries)
+	// const entries = props.entries.map((entry) => {
+	// 	console.log('entry', entry.length)
+	// 	return <Entry entry={entry}/>
+	// });
 
 	return (
-		<ul>
-			{entries}
-		</ul>
+		<div>
+			{props.entries.map(entry => (
+				<Entry entry={entry}/>
+			))}
+		</div>
 	);
 }
 

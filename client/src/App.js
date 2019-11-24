@@ -13,7 +13,7 @@ function App() {
   }, [])
 
   useEffect(() => {
-    console.log(entriesValue);
+    console.log('entriesValue', entriesValue, entriesValue.length);
   }, [entriesValue])
 
   function getEntries() {
@@ -30,7 +30,17 @@ function App() {
       body: JSON.stringify({query, variables: { entryCountValue, sortByValue }})
     })
       .then(r => r.json())
-      .then(data => setEntriesValue(prevState => [...prevState, JSON.parse(data.data.getEntries)]));
+      .then(data => { 
+        const entries = JSON.parse(data.data.getEntries);
+        let prevState = [...entriesValue];
+        let newEntries = [];
+        for (const entry of entries) {
+          newEntries.push(entry);
+        }
+        const newState = prevState.concat(newEntries);
+        setEntriesValue(newState);
+      })
+        //setEntriesValue(prevState => [...prevState, JSON.parse(data.data.getEntries)])})
       //.then(data => console.log(JSON.parse(data.data.getEntries)))
   }
 
