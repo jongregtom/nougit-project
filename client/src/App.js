@@ -115,7 +115,7 @@ function App() {
 
   async function fetchMoreEntries(count) {
     console.log('fetchMore', entriesValue)
-    console.log(entryCountValue)
+    console.log(entries)
     setEntryCountValue(count)
     count = count;
     console.log(entryCountValue)
